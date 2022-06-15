@@ -31,7 +31,7 @@ dT=[1e-1;1e-2;1e-3];                                                        % ti
 
 %=options
 options.plot_FOV=1;
-options.plot_eig=1;
+options.plot_eig=0;
 
 %====== construction of mass and stiffness matrices
 [~, ~, ~, A_H, A_E, M_H, M_E, invM_H, invM_E, A_Hi, A_He, A_Ei, A_Ee] ...
@@ -99,7 +99,7 @@ for p=1:length(dT)
             save([filename],'At_FOV')
             disp('FOV Saved');
         end
-        plot(real(At_FOV),imag(At_FOV),'--b');
+        plot(real(At_FOV),imag(At_FOV),'--b','LineWidth',2);
          xlabel('real  axis'); ylabel('imaginary axis')   
     end
 
@@ -130,4 +130,5 @@ for p=1:length(dT)
         R = polyshape([r1r r2r r3r r4r],[r1i r2i r3i r4i]);
         plot(R)
     end
+    legend('$\mathcal{F}(\widetilde{\mathbf{A}}$', 'Q','R','Interpreter','latex')
 end    
