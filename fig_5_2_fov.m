@@ -76,8 +76,8 @@ for p=1:length(dT)
         save([filename],'At_eigen')
         disp('Eigenvalues Saved');
     end
-    figure; plot(real(At_eigen),imag(At_eigen),'*r'); hold on
-    xlabel('real  axis'); ylabel('imaginary axis')
+    %figure; plot(real(At_eigen),imag(At_eigen),'*r'); hold on
+    %xlabel('real  axis'); ylabel('imaginary axis')
     
     if options.plot_FOV==1
         filename_exist = sprintf('/matrices/gmsh_square_meshes/fov/FOV_At_4RK_gamma_real_alpha_outer_%d_inner_%d_polydeg_%d_dt_%s.mat',...
@@ -99,6 +99,7 @@ for p=1:length(dT)
             disp('FOV Saved');
         end
         plot(real(At_FOV),imag(At_FOV),'--b'); hold on
+         xlabel('real  axis'); ylabel('imaginary axis')   
     end
 
     % ========= Box containing FOV
