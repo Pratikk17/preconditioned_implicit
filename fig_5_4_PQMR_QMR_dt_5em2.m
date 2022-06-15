@@ -3,8 +3,6 @@
 % PQMR error on fine mesh and coarse mesh respectively. 
 %
 
-
-
 clear all;
 close all;
 format long
@@ -86,4 +84,4 @@ xlabel('# iterations')
 ylabel('relative error')
 set(gca,'FontSize',16);
 legend('qmr-lev-1','pqmr-lev-1','qmr-lev-2','pqmr-lev-2','qmr-lev-3','pqmr-lev-3','qmr-lev-4','pqmr-lev-4','Location','SouthEast')
-
+xlim([1 maxit])

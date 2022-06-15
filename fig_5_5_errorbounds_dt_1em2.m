@@ -52,7 +52,6 @@ rng(1);
 b = 0*rand(length(invM_E),1);
 x0 = rand(length(invM_E),1);
 
-
 A = speye(size(invM_E)) + alpha*CH*CE ;
 B = speye(size(invM_E)) + gamma*CH_i*CE_i;
 E_ex=A\b;  
@@ -84,8 +83,8 @@ rho_S=min(rho_SC(2),rho_SC(3));
 phi_S=1/rho_S;
 
 [B1, B2] = lu(B);
-[B1_L,B1_U,B1_P,B1_Q] = lu(B1);
-[B_L,B_U,B_P,B_Q] = lu(B);
+[B1_L,B1_U,B1_P,B1_Q] = lu(sparse(B1));
+[B_L,B_U,B_P,B_Q] = lu(sparse(B));
 [~, ~, iter_pre, errors_pre, errorBounds_const] = Pqmr_weighted_projectionMatrix(A,b,x0,M_E,B_L,B_U,B_P,B_Q,B1_L,B1_U,B1_P,B1_Q,tol,maxit,tol_break, E_ex, sqrt_ME, sqrt_ME_inv);
 
 lin = linspace(1, iter_pre, iter_pre);
@@ -105,7 +104,7 @@ semilogy(lin, errorBounds_fov,'b','LineWidth',1.5)
 %semilogy(lin, errorBounds_R,'g','LineWidth',1.5)
 semilogy(lin, errorBounds_S,'--m','LineWidth',1.5)
 
-legend('PQMR','Bound-$\mathcal{F}(\widetilde{\mathbf{A}}$', 'Bound-S','Interpreter','latex')     
+legend('pQMR','Bound-$\mathcal{F}(\widetilde{\mathbf{A}}$', 'Bound-S','Interpreter','latex')     
 set(gca,'FontSize',15)
 % tex_filename=sprintf('tikz_plots/error_plot_theorem_outer_%d_inner_%d_dt_%s.tex',str2num(mesh_parameters.mesh_level),str2num(mesh_parameters.inner_level),dt);
 % matlab2tikz(tex_filename);

@@ -4,7 +4,6 @@
 % and can be plotted to produce fig 5.3 by running "fig_5_3_optimization.m'
 %
 
-
 clear all;
 close all;
 %====== Add path to folders containing meshes and routines
@@ -51,7 +50,7 @@ gamma=zeros(length(dT),N_gamma);
 gamma_opt=zeros(length(dT),1);
 alpha=zeros(length(dT),1);
 
-iter=linspace(1,100,100);
+iter=linspace(1,N_gamma-1,N_gamma-1);
 
 gamma_opt_S_m=zeros(length(dT),length(iter));
 phi0_S_opt_m=zeros(length(dT),length(iter));
@@ -63,7 +62,7 @@ gamma_opt_Q_m=zeros(length(dT),length(iter));
 phi0_Q_opt_m=zeros(length(dT),length(iter));
 
 for p=1:length(dT)
-    dt=dT(p)   
+    dt=dT(p);   
     alpha(p)=(1/24 + i*sqrt(3)/24)*(dt^2);                                 % corresponds to lambda_i^2  of RK4 matrix
 %    A = speye(size(invM_E)) + alpha * CH*CE ;                             % A       
     gamma(p,:) = linspace(1e-2*abs(alpha(p)),1*abs(alpha(p)),N_gamma);

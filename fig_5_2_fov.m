@@ -31,6 +31,7 @@ dT=[1e-1;1e-2;1e-3];                                                        % ti
 
 %=options
 options.plot_FOV=1;
+options.plot_eig=1;
 
 %====== construction of mass and stiffness matrices
 [~, ~, ~, A_H, A_E, M_H, M_E, invM_H, invM_E, A_Hi, A_He, A_Ei, A_Ee] ...
@@ -56,29 +57,29 @@ for p=1:length(dT)
     dt=dT(p)   
     alpha=(1/24 + i*sqrt(3)/24)*(dt^2);
     gamma=real(alpha);
-
-    %======== works only for Andreas' meshes. check run_FOV.m for other meshes
-    filename_exist = sprintf('/matrices/gmsh_square_meshes/eig/eig_At_4RK_gamma_real_alpha_outer_%d_inner_%d_polydeg_%d_dt_%s.mat',...
-                     str2num(mesh_parameters.mesh_level),str2num(mesh_parameters.inner_level),N,num2str(dt));
-    filename = sprintf('matrices/gmsh_square_meshes/eig/eig_At_4RK_gamma_real_alpha_outer_%d_inner_%d_polydeg_%d_dt_%s.mat',...
-               str2num(mesh_parameters.mesh_level),str2num(mesh_parameters.inner_level),N,num2str(dt));
-    if exist(filename_exist,'file')==2
-        load([filename])
-        disp('Eigenvalues loaded');
-    else
-        A = speye(size(invM_E)) + alpha * CH*CE ;                           % A       
-        B = speye(size(invM_E)) + gamma* CH_i*CE_i;
-        [L,U,P,Q]=lu(B); B=Q*(U\(L\(P*eye(d_E))));                          % B=inv(Binv) using lu decomposition
-        Bsqrt_inv=sqrtm(full(B));
-        At=Bsqrt_inv*A*Bsqrt_inv;
-        At_eigen=eig(At);
-        % Note that eigen values of At and At_M=sqrt_ME*At*sqrt_ME_inv are same. Hence we consider only eigenvalues of At.
-        save([filename],'At_eigen')
-        disp('Eigenvalues Saved');
+    figure; hold on
+    if options.plot_eig==1
+        filename_exist = sprintf('/matrices/gmsh_square_meshes/eig/eig_At_4RK_gamma_real_alpha_outer_%d_inner_%d_polydeg_%d_dt_%s.mat',...
+                         str2num(mesh_parameters.mesh_level),str2num(mesh_parameters.inner_level),N,num2str(dt));
+        filename = sprintf('matrices/gmsh_square_meshes/eig/eig_At_4RK_gamma_real_alpha_outer_%d_inner_%d_polydeg_%d_dt_%s.mat',...
+                   str2num(mesh_parameters.mesh_level),str2num(mesh_parameters.inner_level),N,num2str(dt));
+        if exist(filename_exist,'file')==2
+            load([filename])
+            disp('Eigenvalues loaded');
+        else
+            A = speye(size(invM_E)) + alpha * CH*CE ;                           % A       
+            B = speye(size(invM_E)) + gamma* CH_i*CE_i;
+            [L,U,P,Q]=lu(B); B=Q*(U\(L\(P*eye(d_E))));                          % B=inv(Binv) using lu decomposition
+            Bsqrt_inv=sqrtm(full(B));
+            At=Bsqrt_inv*A*Bsqrt_inv;
+            At_eigen=eig(At);
+            % Note that eigen values of At and At_M=sqrt_ME*At*sqrt_ME_inv are same. Hence we consider only eigenvalues of At.
+            save([filename],'At_eigen')
+            disp('Eigenvalues Saved');
+        end
+         plot(real(At_eigen),imag(At_eigen),'*r'); 
+        xlabel('real  axis'); ylabel('imaginary axis')
     end
-    %figure; plot(real(At_eigen),imag(At_eigen),'*r'); hold on
-    %xlabel('real  axis'); ylabel('imaginary axis')
-    
     if options.plot_FOV==1
         filename_exist = sprintf('/matrices/gmsh_square_meshes/fov/FOV_At_4RK_gamma_real_alpha_outer_%d_inner_%d_polydeg_%d_dt_%s.mat',...
             str2num(mesh_parameters.mesh_level),str2num(mesh_parameters.inner_level),N,num2str(dt));
@@ -98,7 +99,7 @@ for p=1:length(dT)
             save([filename],'At_FOV')
             disp('FOV Saved');
         end
-        plot(real(At_FOV),imag(At_FOV),'--b'); hold on
+        plot(real(At_FOV),imag(At_FOV),'--b');
          xlabel('real  axis'); ylabel('imaginary axis')   
     end
 

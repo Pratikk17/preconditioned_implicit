@@ -33,9 +33,6 @@ else
     initialization_time = toc;
     fprintf('time to initialize = %8.3e\n', initialization_time);
 end
-% fprintf('difference sqrt M_H  = %e \n', norm(M_H-sqrt_MH^2,'fro')/norm(M_H,'fro'));
-% fprintf('difference sqrt M_E  = %e \n', norm(M_E-sqrt_ME^2,'fro')/norm(M_E,'fro'));
-% fprintf('difference sqrt invM_E  = %e \n', norm(invM_E-inv_sqrt_ME^2,'fro')/norm(invM_E,'fro'));
 
 end
 

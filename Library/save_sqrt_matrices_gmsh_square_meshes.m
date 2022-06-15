@@ -18,7 +18,7 @@ if exist(mat_file, 'file') == 2
     initialization_time = toc;
     fprintf('time to initialize = %8.3e\n', initialization_time);
 else
-    blockSize = 1 + 2*N + N*(N-1)/2
+    blockSize = 1 + 2*N + N*(N-1)/2;
     sqrt_ME = M_E;
     sqrt_ME_inv = M_E;
     for j = 1:blockSize:length(M_E)-blockSize+1
@@ -35,14 +35,5 @@ else
     initialization_time = toc;
     fprintf('time to initialize = %8.3e\n', initialization_time);
 end
-fprintf('check: I - inv_sqrt_ME ^2 * M_E = 0    : %e \n',max(max(abs(eye(length(M_E)) - sqrt_ME_inv*sqrt_ME_inv * M_E))));
-fprintf('check: inv_sqrt_ME ^2 - inv(full(M_E)) = 0    : %e \n',max(max(abs(sqrt_ME_inv*sqrt_ME_inv - inv(full(M_E))))));
-fprintf('check: inv_sqrt_ME ^2 - invM_E = 0    : %e \n',full(max(max(abs(sqrt_ME_inv*sqrt_ME_inv - invM_E)))));
-fprintf('check: inv(full(M_E)) - invM_E = 0    : %e \n',max(max(abs(invM_E - inv(full(M_E))))));
-% fprintf('difference sqrt M_H  = %e \n', norm(M_H-sqrt_MH^2,'fro')/norm(M_H,'fro'));
-% fprintf('difference sqrt M_E  = %e \n', norm(M_E-sqrt_ME^2,'fro')/norm(M_E,'fro'));
-% fprintf('difference sqrt invM_E  = %e \n', norm(invM_E-inv_sqrt_ME^2,'fro')/norm(invM_E,'fro'));
+
 end
-
-
-%     end
