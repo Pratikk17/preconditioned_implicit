@@ -12,5 +12,5 @@ dt=dT(1)
 figure(1); 
 plot(gamma(1,:),1./phi0_S(1,:),'r');hold on
 xlabel('\gamma'), ylabel('1/\phi_0')
-legend('S')
+%legend('S')
 

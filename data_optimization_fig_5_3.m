@@ -30,7 +30,7 @@ A_E=-A_E; A_Ei=-A_Ei; A_Ee=-A_Ee;                                           % ad
 
 % dimension of problem
 d_H=size(A_E,1);        d_E=size(A_E,2);
-figure(11);             PlotMesh2D();
+%figure(11);             PlotMesh2D();
 
 CH=invM_E*A_H;         CE=invM_H*A_E;
 CH_i=invM_E*A_Hi;      CE_i=invM_H*A_Ei;
@@ -104,4 +104,4 @@ save(filename,'dT','alpha','sq_norm_CE_e','gamma','iter',...
 figure(1); 
 plot(gamma(1,:),1./phi0_S(1,:),'r');hold on
 xlabel('\gamma'), ylabel('1/\phi_0')
-legend('S')
+%legend('S')

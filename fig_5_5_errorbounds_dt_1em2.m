@@ -34,7 +34,7 @@ gamma=real(alpha);
 A_E=-A_E; A_Ei=-A_Ei; A_Ee=-A_Ee;                                          % adapt E stiffness matrices to our sign convention
 
 %====== dimension of problem
-figure(11); PlotMesh2D();
+%figure(11); PlotMesh2D();
 d_E=size(A_E,2);
 
 %===construct discrete curl operators
@@ -97,15 +97,15 @@ errorBounds_S=errorBounds_const.*min(3./(phi_S.^lin),2*(phi_S.^lin)./((phi_S.^li
 
 figure
 semilogy(lin, errors_pre,'r')
-xlabel('Iteration')
+xlabel('Number of iterations')
 ylabel('Error')
 hold on
 semilogy(lin, errorBounds_fov,'b','LineWidth',1.5)
-semilogy(lin, errorBounds_Q,'k','LineWidth',1.5)
-semilogy(lin, errorBounds_R,'g','LineWidth',1.5)
+%semilogy(lin, errorBounds_Q,'k','LineWidth',1.5)
+%semilogy(lin, errorBounds_R,'g','LineWidth',1.5)
 semilogy(lin, errorBounds_S,'--m','LineWidth',1.5)
 
-legend('PQMR','Bound-FOV', 'Bound-Analytical-Q', 'Bound-Analytical-R', 'Bound-Analytical-S')     
+legend('PQMR','Bound-$\mathcal{F}(\widetilde{\mathbf{A}}$', 'Bound-S','Interpreter','latex')     
 set(gca,'FontSize',15)
 % tex_filename=sprintf('tikz_plots/error_plot_theorem_outer_%d_inner_%d_dt_%s.tex',str2num(mesh_parameters.mesh_level),str2num(mesh_parameters.inner_level),dt);
 % matlab2tikz(tex_filename);

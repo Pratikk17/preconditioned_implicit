@@ -14,7 +14,7 @@ These matlab codes are intended to reproduce the results from the paper
  
  3) Run "fig_5_4_PQMR_QMR_dt_5em2.m" to plot the relative error of QMR and pQMR against number of iterations for different meshes.
  
- 4) Run "fig_5_5_errorbounds_dt_1em2.m" creates figure 5.5, which numerically verifies the error bound in Theore 4.5.
+ 4) Run "fig_5_5_errorbounds_dt_1em2.m" creates figure 5.5, which numerically verifies the error bound in Theorem 4.5.
  
  We thank Andreas Sturm for the generation of meshes in Figure 5.1, and implementation of the functions to compute the (full and split) stiffness, mass and inverse mass matrices on these meshes.
  

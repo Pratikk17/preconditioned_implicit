@@ -36,7 +36,7 @@ for k=1:4
     
     %=== dimension of problem
     d_H=size(A_E,1);      d_E=size(A_E,2);
-    figure(11); PlotMesh2D();
+%    figure(11); PlotMesh2D();
     
     %======= construction of discrete curl operators
     CH=invM_E*A_H;         CE=invM_H*A_E;
@@ -68,7 +68,7 @@ for k=1:4
     iter_qmr
     [err_qmr]=Compute_A_error(x_qmr,E_ex,M_E);
     figure(3);
-    semilogy(err_qmr./err_qmr(1),'--'); hold on;
+    semilogy(err_qmr./err_qmr(1),'-'); hold on;
          
     [B1, B2] = lu(B);
     [B1_L,B1_U,B1_P,B1_Q] = lu(B1);
@@ -77,7 +77,7 @@ for k=1:4
     [err_pqmr]=Compute_A_error(x_pqmr,E_ex,M_E);
 
     figure(3); 
-    semilogy(err_pqmr./err_pqmr(1),'-');
+    semilogy(err_pqmr./err_pqmr(1),'--');
 
 end
 
