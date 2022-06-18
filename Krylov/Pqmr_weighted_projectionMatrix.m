@@ -8,6 +8,7 @@ function [x,P, iter, errors_pre, errorBounds_const] = Pqmr_weighted_projectionMa
 % Moreover, the breakdown of PQMR is controlled by tol_breakdown
 % Note that [B1_L,B1_U,B1_P,B1_Q]=lu(B1) and [B_L,B_U,B_P,B_Q]=lu(B)
 
+% Authors: Mohamed Abdelmonem, Jonas Koehler, Pratik M. Kumbhar
 
    
     errors_pre = [];

@@ -1,3 +1,5 @@
+% Author: Jonas Koehler
+
 gamma =  linspace(1.01,2.1,10)
 l = length(gamma);
 R = 1:l;

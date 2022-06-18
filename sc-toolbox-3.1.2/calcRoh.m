@@ -1,6 +1,7 @@
 function [rho] = calcRoh(alpha,gamma, sq_norm_CE_e, sq_norm_CE_i, At_FOV,flag_fov)
     % calculates rho=1/|phi(0)|
-
+    %  Authors: Mohamed Abdelmonem, Jonas Koehler, Pratik M. Kumbhar
+    
     alpha_r=real(alpha);
     alpha_im=imag(alpha);
     

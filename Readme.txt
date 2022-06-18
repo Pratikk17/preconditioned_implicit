@@ -18,5 +18,5 @@ These matlab codes are intended to reproduce the results from the paper
  
  We thank Andreas Sturm for the generation of meshes in Figure 5.1, and implementation of the functions to compute the (full and split) stiffness, mass and inverse mass matrices on these meshes.
  
- We have also added codes which generates a locally refined mesh on a unit square such that fine meshes are constructed along rectangular strips. To use these meshes, one needs to make some minor modifications, namely, store and use matrices from the folder "matrices/rectangular_meshes" instead of "matrices/gmsh_square_meshes". Moreover, these meshes may contain hanging nodes and hence use "Startup_hanging.m" and "Startup_nohanging.m" instead of "Startup_gmsh_square_meshes.m" wherever required.
+ We have also added codes which generates a locally refined mesh on a unit square such that fine meshes are constructed along rectangular strips. To use these meshes, one needs to make some modifications. These meshes may contain hanging nodes and hence use "Startup_hanging.m" and "Startup_nohanging.m" instead of "Startup_gmsh_square_meshes.m" wherever required. Moreover, store and use matrices from the folder "matrices/rectangular_meshes" instead of "matrices/gmsh_square_meshes". 
 
