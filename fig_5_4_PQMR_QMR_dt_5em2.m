@@ -52,9 +52,6 @@ for k=1:4
     A = speye(size(invM_E)) + alpha*CH*CE ;
     B = speye(size(invM_E)) + gamma*CH_i*CE_i;
     [B_L,B_U,B_P,B_Q]=lu(B); 
-    Binv=B_Q*(B_U\(B_L\(B_P*eye(d_E))));                                                % Binv=inv(B) using lu decomposition
-    Bsqrt_inv=sqrtm(full(Binv));
-    At=Bsqrt_inv*A*Bsqrt_inv;
     
     %========== building linear system
     rng(1);
@@ -68,9 +65,9 @@ for k=1:4
     figure(3);
     semilogy(err_qmr./err_qmr(1),'-'); hold on;
          
-    [B1, B2] = lu(B);
-    [B1_L,B1_U,B1_P,B1_Q] = lu(B1);
-    [~,x_pqmr,iter_pqmr] = Pqmr_weighted(A,b,x0,M_E,B_L,B_U,B_P,B_Q,B1_L,B1_U,B1_P,B1_Q,tol,maxit,tol_break);
+    %[B1, B2] = lu(B);
+%    [B1_L,B1_U,B1_P,B1_Q] = lu(B1);
+    [~,x_pqmr,iter_pqmr] = Pqmr_weighted(A,b,x0,M_E,B_L,B_U,B_P,B_Q,B_L,B_U,B_P,B_Q,tol,maxit,tol_break);
     iter_pqmr
     [err_pqmr]=Compute_A_error(x_pqmr,E_ex,M_E);
 

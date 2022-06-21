@@ -82,10 +82,10 @@ phi_R=1/rho_SC(3);
 rho_S=min(rho_SC(2),rho_SC(3));
 phi_S=1/rho_S;
 
-[B1, B2] = lu(B);
-[B1_L,B1_U,B1_P,B1_Q] = lu(sparse(B1));
+% [B1, B2] = lu(B);
+% [B1_L,B1_U,B1_P,B1_Q] = lu(sparse(B1));
 [B_L,B_U,B_P,B_Q] = lu(sparse(B));
-[~, ~, iter_pre, errors_pre, errorBounds_const] = Pqmr_weighted_projectionMatrix(A,b,x0,M_E,B_L,B_U,B_P,B_Q,B1_L,B1_U,B1_P,B1_Q,tol,maxit,tol_break, E_ex, sqrt_ME, sqrt_ME_inv);
+[~, ~, iter_pre, errors_pre, errorBounds_const] = Pqmr_weighted_projectionMatrix(A,b,x0,M_E,B_L,B_U,B_P,B_Q,B_L,B_U,B_P,B_Q,tol,maxit,tol_break, E_ex, sqrt_ME, sqrt_ME_inv);
 
 lin = linspace(1, iter_pre, iter_pre);
 
