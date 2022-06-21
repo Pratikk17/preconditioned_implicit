@@ -65,8 +65,8 @@ if exist(filename_exist,'file')==2
     load([filename])
     disp('FOV loaded');
 else
-    [L,U,P,Q]=lu(B); Binv=Q*(U\(L\(P*eye(d_E))));                        % Binv=inv(Binv) using lu decomposition
-    Bsqrt_inv=sqrtm(full(Binv));
+    [L,U,P,Q]=lu(B); B=Q*(U\(L\(P*eye(d_E))));                        % B=inv(Binv) using lu decomposition
+    Bsqrt_inv=sqrtm(full(B));
     At=Bsqrt_inv*A*Bsqrt_inv;
     At_M=sqrt_ME*At*sqrt_ME_inv;                                  % equivalent of A_titde in M norm
     At_FOV = wber3(At_M,10,'--b');                                % calculating FOV
