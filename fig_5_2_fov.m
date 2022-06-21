@@ -69,8 +69,8 @@ for p=1:length(dT)
         else
             A = speye(size(invM_E)) + alpha * CH*CE ;                           % A       
             B = speye(size(invM_E)) + gamma* CH_i*CE_i;
-            [L,U,P,Q]=lu(B); B=Q*(U\(L\(P*eye(d_E))));                          % B=inv(Binv) using lu decomposition
-            Bsqrt_inv=sqrtm(full(B));
+            [L,U,P,Q]=lu(B); Binv=Q*(U\(L\(P*eye(d_E))));                          % B=inv(Binv) using lu decomposition
+            Bsqrt_inv=sqrtm(full(Binv));
             At=Bsqrt_inv*A*Bsqrt_inv;
             At_eigen=eig(At);
             % Note that eigen values of At and At_M=sqrt_ME*At*sqrt_ME_inv are same. Hence we consider only eigenvalues of At.
@@ -91,8 +91,8 @@ for p=1:length(dT)
         else
             A = speye(size(invM_E)) + alpha* CH*CE ;                          % A       
             B = speye(size(invM_E)) + gamma* CH_i*CE_i;
-            [L,U,P,Q]=lu(B); B=Q*(U\(L\(P*eye(d_E))));                        % B=inv(Binv) using lu decomposition
-            Bsqrt_inv=sqrtm(full(B));
+            [L,U,P,Q]=lu(B); Binv=Q*(U\(L\(P*eye(d_E))));                        % B=inv(Binv) using lu decomposition
+            Bsqrt_inv=sqrtm(full(Binv));
             At=Bsqrt_inv*A*Bsqrt_inv;
             At_M=sqrt_ME*At*sqrt_ME_inv;                                     % equivalent of A_titde in M norm
             At_FOV = wber3(At_M,10,'--b');                                % calculating FOV
