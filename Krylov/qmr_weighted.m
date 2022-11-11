@@ -16,6 +16,7 @@ function [x,x_iter,iter] = qmr_weighted(A, b, x,M,tol,maxit,tol_break)
     delta=1;
     d=v;                                                                    % some random d to start with ...
     while norm(d)>tol && iter<maxit                                         % d=x_n - x_{n-1}
+    %while MnormVector(M,d)>tol && iter<maxit
         %============= step 1
         delta=v.'*M*v;
         if abs(epsi0)<tol_break || abs(delta)<tol_break

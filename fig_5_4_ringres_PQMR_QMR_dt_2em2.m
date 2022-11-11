@@ -17,7 +17,7 @@ N=4;                                                                    % polyno
 alpha_stab=0;                                                           % 0 for central flux 
 dt=2e-2;                                                                % time steps tau     
 tol=dt.^2;                                                               % tolerance for Krylov subspace methods, here it is for qmr and pqmr
-maxit=100;                                                              % maximum number of iterations for Krylov subspace methods
+maxit=1000;                                                              % maximum number of iterations for Krylov subspace methods
 tol_break=1e-14;                                                        % breakdown of QMR
 options.plot_mesh=1;                                                    % To plot mesh
 options.info = 1;
@@ -55,7 +55,8 @@ B = speye(size(invM_E)) + gamma*CH_i*CE_i;
 rng(1);
 x0=rand(d_E,1);
 b=rand(d_E,1);
-     
+    
+
 E_ex=A\b;                                                                  %====exact solution 
 [~,x_qmr,iter_qmr] = qmr_weighted(A, b, x0,M_E,tol,maxit,tol_break);
 iter_qmr
@@ -78,3 +79,5 @@ ylabel('relative error')
 set(gca,'FontSize',16);
 legend('qmr','pqmr','Location','NorthEast')
  %xlim([1 maxit])
+tex_filename=sprintf('tikz_plots/ringres_qmr_pqmr_dt_%s.tex',dt);
+matlab2tikz(tex_filename);

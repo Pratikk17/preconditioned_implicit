@@ -22,6 +22,7 @@ function [x,x_iter,iter] = Pqmr_weighted(A,b,x,M,B_L,B_U,B_P,B_Q,B1_L,B1_U,B1_P,
     delta=1;
     d=v;                                                                    % some random d to start with ...
     while norm(d)>tol && iter<maxit                                         % d=x_n - x_{n-1}
+    %while MnormVector(M,d)>tol && iter<maxit    
         %============= step 1
         invBv=B_Q*(B_U\(B_L\(B_P*v)));                                      % invBv=inv(B)*v;                
         delta=v.'*M*invBv;
