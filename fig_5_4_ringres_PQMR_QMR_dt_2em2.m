@@ -79,5 +79,5 @@ ylabel('relative error')
 set(gca,'FontSize',16);
 legend('qmr','pqmr','Location','NorthEast')
  %xlim([1 maxit])
-tex_filename=sprintf('tikz_plots/ringres_qmr_pqmr_dt_%s.tex',dt);
-matlab2tikz(tex_filename);
+% tex_filename=sprintf('tikz_plots/ringres_qmr_pqmr_dt_%s.tex',dt);
+% matlab2tikz(tex_filename);
