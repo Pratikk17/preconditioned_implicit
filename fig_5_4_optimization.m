@@ -7,7 +7,7 @@
 clear all;
 close all;
 
-load('optimization_data_fig_5_3.mat')
+load('optimization_data_fig_5_4.mat')
 dt=dT(1)
 figure(1); 
 plot(gamma(1,:),1./phi0_S(1,:),'r');hold on
