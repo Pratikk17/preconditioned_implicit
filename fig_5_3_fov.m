@@ -31,7 +31,7 @@ dT=[1e-1;1e-2;1e-3];                                                        % ti
 
 %=options
 options.plot_FOV=1;
-options.plot_eig=0;
+options.plot_eig=1;
 
 %====== construction of mass and stiffness matrices
 [~, ~, ~, A_H, A_E, M_H, M_E, invM_H, invM_E, A_Hi, A_He, A_Ei, A_Ee] ...

@@ -2,7 +2,8 @@ function Plot_Solution(Tout,Uout,flag,dim_prb)
 Globals2D;
 if flag==1
     Size_T = length(Tout);
-    figure;    FigHandle = gcf;
+     %figure;   
+     FigHandle = gcf;
     for k = 1:Size_T
         %Hx
         Hx = Uout(k,1:1/3*dim_prb); 
@@ -15,7 +16,7 @@ if flag==1
         set(FigHandle, 'colormap', jet)
         set(FigHandle, 'Position', [200, 200, 800, 800]);
         set(FigHandle, 'PaperPositionMode', 'auto');
-        title(['Time= ',num2str(Tout(k))]);
+        title(['H_x, Time= ',num2str(Tout(k))]);
         colorbar('location', 'EastOutside'); 
         pause(0.01);
 
@@ -30,7 +31,7 @@ if flag==1
         set(FigHandle, 'colormap', jet)
         set(FigHandle, 'Position', [200, 200, 800, 800]);
         set(FigHandle, 'PaperPositionMode', 'auto');
-        title(['Time= ',num2str(Tout(k))]);
+        title(['H_y, Time= ',num2str(Tout(k))]);
         colorbar('location', 'EastOutside'); 
         pause(0.01);
 
@@ -44,7 +45,7 @@ if flag==1
         set(FigHandle, 'colormap', jet)
         set(FigHandle, 'Position', [200, 200, 800, 800]);
         set(FigHandle, 'PaperPositionMode', 'auto');
-        title(['Time= ',num2str(Tout(k))]);
+        title(['E_z,Time= ',num2str(Tout(k))]);
         colorbar('location', 'EastOutside'); 
         pause(0.01);
     end

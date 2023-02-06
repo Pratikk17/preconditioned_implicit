@@ -5,6 +5,7 @@
 clear all;
 close all;
 format long
+
 %====== Add path to folders containing meshes and routines
 addpath(genpath(pwd));
 
