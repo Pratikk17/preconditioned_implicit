@@ -17,7 +17,7 @@ Globals2D;
 N=4;                                                                    % polynomial degree
 alpha_stab=0;                                                           % 0 for central flux 
 dt=1e-2;                                                                % time steps tau     
-tol=1e-6;                                                               % tolerance for Krylov subspace methods, here it is for qmr and pqmr
+tol=dt^2;                                                               % tolerance for Krylov subspace methods, here it is for qmr and pqmr
 maxit=50;                                                              % maximum number of iterations for Krylov subspace methods
 tol_break=1e-14;                                                        % breakdown of QMR
 
