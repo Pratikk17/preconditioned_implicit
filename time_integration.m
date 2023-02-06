@@ -13,9 +13,9 @@ triangluar_parameters=0;
 
 %====  Global parameters
 Globals2D;
-N=6;                                                                        % polynomial degree
+N=8;                                                                        % polynomial degree
 alpha_stab=0;                                                               % 0 for central flux 
-FinalTime=1;                                                                % final time
+FinalTime=2;                                                                % final time
 dT=[1e-2;5e-3;2e-3;1e-3];                               % time steps tau     
 %dT=[1e-3];
 %tol=1e-5;                                                                   % tolerance for Krylov subspace methods, here it is for qmr and pqmr
@@ -52,7 +52,7 @@ errvec_DIRK4_PQMR=zeros(length(dT),1);
 for p=1:length(dT)
     dt=dT(p)
     %tol=1e-5;
-    tol=dt^2;
+    tol=dt^4;
 
     if options.plot_solution==0                    % solution is saved only at finaltime
         options.N_save=0; 
@@ -96,12 +96,32 @@ end
 
 figure; loglog(dT,errvec_RK4,'*-r','linewidth', 1.5); hold on;
 loglog(dT,errvec_RK4_PQMR,'d--c','linewidth', 1.5);
-loglog(dT,errvec_DIRK4,'s--g','linewidth', 1.5); hold on;
-loglog(dT,errvec_DIRK4_PQMR,'d--b','linewidth', 1.5);
-loglog(dT,10*dT.^4,'--k','linewidth', 1.5);
-%ylim([10^(-6) 10^0])
+loglog(dT,errvec_DIRK4,'s-k','linewidth', 1.5); hold on;
+loglog(dT,errvec_DIRK4_PQMR,'d--g','linewidth', 1.5);
+loglog(dT,10*dT.^4,'--b','linewidth', 1.5);
+ylim([10^(-9) 10^(-4)])
 xlabel('time step (\tau)');
 ylabel('error');
 set(gca,'FontSize',15)
 legend('implicit RK4','RK4-PQMR','DIRK4','DIRK4-PQMR','location','NorthWest');
 %legend('implicit RK4','DIRK4','location','NorthWest');
+
+tex_filename=sprintf('tikz_plots/time_integration_error.tex');
+ matlab2tikz(tex_filename);
+
+
+
+ figure; loglog(dT,time_RK4,'*-r','linewidth', 1.5); hold on;
+loglog(dT,time_RK4_PQMR,'d--c','linewidth', 1.5);
+loglog(dT,time_DIRK4,'s-k','linewidth', 1.5); hold on;
+loglog(dT,time_DIRK4_PQMR,'d--g','linewidth', 1.5);
+%loglog(dT,10*dT.^4,'--b','linewidth', 1.5);
+%ylim([10^(-9) 10^(-4)])
+xlabel('time step (\tau)');
+ylabel('time (s)');
+set(gca,'FontSize',15)
+legend('implicit RK4','RK4-PQMR','DIRK4','DIRK4-PQMR','location','NorthWest');
+%legend('implicit RK4','DIRK4','location','NorthWest');
+
+tex_filename=sprintf('tikz_plots/time_integration_time.tex');
+ matlab2tikz(tex_filename);
